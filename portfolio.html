@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — Tunog Modern PH-Worldwide</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header role="banner">
+    <div class="header-inner">
+        <a href="index.html" class="brand"><strong>Tunog Modern PH-Worldwide</strong></a>
+        <nav aria-label="Main navigation">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html" aria-current="page">Portfolio</a></li>
+                <li><a href="before-after.html">Before &amp; After</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" id="nav-login">Client Login</a></li>
+                <li><a href="dashboard.html" id="nav-dashboard" hidden>My Messages</a></li>
+                <li><a href="#" id="nav-logout" hidden>Log Out</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content" role="main">
+    <h1>Audio Portfolio</h1>
+    <p>Explore audio and video samples uploaded by Tunog Modern PH-Worldwide. New samples appear here automatically when the owner uploads them.</p>
+
+    <section aria-labelledby="samples-h">
+        <h2 id="samples-h">Featured Samples</h2>
+        <div id="samples-list" role="region" aria-live="polite" aria-label="Audio and video samples">
+            <p>Loading samples…</p>
+        </div>
+    </section>
+
+    <section aria-labelledby="port-cta">
+        <h2 id="port-cta">Have a Project Similar to These Samples?</h2>
+        <p>Send the details of your project and discuss what you need.</p>
+        <p><a href="contact.html" class="btn">Send a Project Inquiry</a></p>
+    </section>
+</main>
+
+<footer role="contentinfo">
+    <p class="copyright">© Tunog Modern PH-Worldwide. All rights reserved.</p>
+</footer>
+
+<script src="js/auth.js"></script>
+<script>
+(async function () {
+    const res = await fetch('/api/samples');
+    const rows = await res.json();
+    const box = document.getElementById('samples-list');
+    if (!rows.length) {
+        box.innerHTML = '<p>No samples have been uploaded yet. Please check back soon.</p>';
+        return;
+    }
+    function esc(s) {
+        return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+    }
+    box.innerHTML = rows.map(s => {
+        const media = s.media_type === 'video'
+            ? `<video controls preload="metadata" aria-label="${esc(s.title)}">
+                   <source src="${s.file_path}">
+                   Your browser does not support the video element.
+                   <a href="${s.file_path}">Download the video</a>.
+               </video>`
+            : `<audio controls preload="metadata" aria-label="${esc(s.title)}">
+                   <source src="${s.file_path}">
+                   Your browser does not support the audio element.
+                   <a href="${s.file_path}">Download the audio</a>.
+               </audio>`;
+        return `
+            <article class="service-card" style="margin-bottom:1.5rem">
+                <h3>${esc(s.title)}</h3>
+                <p><strong>Category:</strong> ${esc(s.category)}</p>
+                ${media}
+                <p>${esc(s.description || '')}</p>
+                <p><a href="${s.file_path}" download>Download this sample</a></p>
+            </article>`;
+    }).join('');
+})();
+</script>
+</body>
+</html>

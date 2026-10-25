@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Tunog Modern PH-Worldwide</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header role="banner">
+    <div class="header-inner">
+        <a href="index.html" class="brand"><strong>Tunog Modern PH-Worldwide</strong></a>
+        <nav aria-label="Main navigation">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="before-after.html">Before &amp; After</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html" aria-current="page">Contact</a></li>
+                <li><a href="login.html" id="nav-login">Client Login</a></li>
+                <li><a href="dashboard.html" id="nav-dashboard" hidden>My Messages</a></li>
+                <li><a href="#" id="nav-logout" hidden>Log Out</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content" role="main">
+    <h1>Let's Talk About Your Audio Project</h1>
+    <p>Send the details of your project and tell us what you need. Logged-in clients also receive replies in their dashboard.</p>
+
+    <section id="project-inquiry" aria-labelledby="inq-h">
+        <h2 id="inq-h">Send a Project Inquiry</h2>
+        <form id="inquiry-form" novalidate>
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" required aria-required="true" autocomplete="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required aria-required="true" autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="service">Type of Service</label>
+                <select id="service" required aria-required="true">
+                    <option value="">— Please choose —</option>
+                    <option>Podcast Editing</option>
+                    <option>Voice &amp; Narration Editing</option>
+                    <option>Mixing &amp; Mastering</option>
+                    <option>Music &amp; Sound Design</option>
+                    <option>Jingles &amp; Audio Branding</option>
+                    <option>Custom Audio Project</option>
+                    <option>Not Sure Yet</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="project-details">Tell Us About Your Project</label>
+                <textarea id="project-details" required aria-required="true"
+                    aria-describedby="proj-hint"></textarea>
+                <span id="proj-hint" class="hint">What type of audio you have, what you want to improve, the final result you are looking for, and any specific requirements.</span>
+            </div>
+            <p><button type="submit" class="btn">Send Project Inquiry</button></p>
+            <p id="form-status" role="status" aria-live="polite"></p>
+        </form>
+    </section>
+
+    <section aria-labelledby="login-cta">
+        <h2 id="login-cta">Want to Track Your Message?</h2>
+        <p>Create a free client account to see all your messages and replies in one place.</p>
+        <p><a href="login.html" class="btn btn-secondary">Client Login / Register</a></p>
+    </section>
+</main>
+
+<footer role="contentinfo">
+    <p class="copyright">© Tunog Modern PH-Worldwide. All rights reserved.</p>
+</footer>
+
+<script src="js/auth.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

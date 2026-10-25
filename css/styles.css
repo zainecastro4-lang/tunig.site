@@ -1,0 +1,979 @@
+/* ============================================================
+   TUNOG MODERN PH-WORLDWIDE — Formal Aesthetic Theme + Chat
+   Professional, editorial, high-contrast, NVDA-friendly
+   ============================================================ */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Palette - deep navy + cool neutrals, single blue accent */
+    --navy:        #0b1730;      /* header / footer */
+    --navy-2:      #14284d;
+    --bg:          #f2f5fa;      /* page background */
+    --surface:     #ffffff;      /* card / panel background */
+    --surface-alt: #e9eef7;      /* subtle tinted surfaces */
+    --ink:         #0f172a;      /* main text */
+    --ink-soft:    #475569;      /* secondary text */
+    --muted:       #5b6b80;      /* hints, meta (AA on bg) */
+    --line:        #d9e0ec;      /* hairline borders */
+
+    --accent:      #1d4ed8;
+    --accent-dark: #1e3a8a;
+    --accent-soft: #e3ebff;
+
+    --success:     #0f7b3f;
+    --danger:      #b42318;
+
+    /* Focus & links */
+    --focus:       #1d4ed8;
+    --focus-dark:  #fbbf24;      /* focus ring on dark backgrounds */
+    --link:        #1d4ed8;
+    --link-hover:  #1e3a8a;
+
+    /* Radii & shadows */
+    --radius:      6px;
+    --radius-lg:   12px;
+    --shadow-sm:   0 1px 2px rgba(15, 23, 42, 0.06);
+    --shadow-md:   0 6px 16px rgba(15, 23, 42, 0.08);
+    --shadow-lg:   0 20px 48px rgba(8, 15, 35, 0.28);
+
+    /* Type */
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", Georgia, serif;
+    --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--sans);
+    font-size: 1.0625rem;      /* 17px — readable for NVDA */
+    line-height: 1.7;
+    color: var(--ink);
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(1100px 460px at 50% -140px, rgba(29, 78, 216, 0.10), transparent 70%),
+        linear-gradient(180deg, #f7f9fd 0%, var(--bg) 420px);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    font-feature-settings: "kern", "liga";
+    text-rendering: optimizeLegibility;
+}
+
+/* ============================================================
+   SKIP LINK — critical for screen reader users
+   ============================================================ */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    background: var(--focus);
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 9999;
+    border-radius: var(--radius);
+    letter-spacing: 0.02em;
+}
+.skip-link:focus {
+    top: 1rem;
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+
+/* ============================================================
+   FOCUS INDICATORS — always visible
+   ============================================================ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+audio:focus-visible,
+video:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: var(--radius);
+}
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+summary:focus {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+header[role="banner"] {
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+    border-bottom: 3px solid var(--accent);
+    box-shadow: 0 2px 10px rgba(8, 15, 35, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+}
+
+.brand {
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    border-left: 3px solid #6b93ff;
+    padding-left: 0.75rem;
+}
+.brand strong { font-weight: 600; }
+.brand:hover { color: #cfdcff; }
+header[role="banner"] a:focus-visible,
+header[role="banner"] a:focus { outline-color: var(--focus-dark); }
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+    align-items: center;
+}
+
+.nav-list a {
+    color: #d5def0;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+.nav-list a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+.nav-list a[aria-current="page"] {
+    color: #fff;
+    border-bottom: 2px solid #6b93ff;
+    border-radius: 0;
+    padding-bottom: 0.4rem;
+}
+
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
+main {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+}
+
+section {
+    margin-bottom: 3.5rem;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: var(--serif);
+    color: var(--ink);
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    line-height: 1.25;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--accent);
+    max-width: 900px;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin: 2.5rem 0 1rem;
+    color: var(--ink);
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--accent-dark);
+}
+
+h4 {
+    margin: 1.25rem 0 0.4rem;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.875rem;
+}
+
+p, ul, ol {
+    margin-bottom: 1rem;
+    color: var(--ink);
+    max-width: 75ch;
+}
+p { text-wrap: pretty; }
+
+ul, ol { padding-left: 1.5rem; }
+li { margin-bottom: 0.4rem; }
+
+a {
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+a:hover {
+    color: var(--link-hover);
+    text-decoration-thickness: 2px;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: 0.02em;
+    border-radius: var(--radius);
+    border: 1px solid var(--accent);
+    box-shadow: 0 1px 2px rgba(29, 78, 216, 0.3);
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.05s ease;
+    font-family: var(--sans);
+}
+.btn:hover {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-secondary {
+    background: transparent;
+    color: var(--accent-dark);
+    border-color: var(--accent);
+}
+.btn-secondary:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* ============================================================
+   CARDS / SERVICE GRID
+   ============================================================ */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.75rem;
+}
+
+.service-card {
+    background: var(--surface);
+    padding: 1.75rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.service-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+.service-card h3 {
+    margin-top: 0;
+    color: var(--ink);
+    font-size: 1.1875rem;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+/* ============================================================
+   AUDIO / VIDEO
+   ============================================================ */
+audio, video {
+    width: 100%;
+    max-width: 640px;
+    margin: 0.75rem 0 1rem;
+    border-radius: var(--radius);
+    background: var(--surface-alt);
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+details {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    margin-bottom: 0.75rem;
+    padding: 0.25rem 1.25rem;
+    box-shadow: var(--shadow-sm);
+}
+summary {
+    cursor: pointer;
+    font-weight: 600;
+    padding: 1rem 0;
+    font-size: 1rem;
+    color: var(--ink);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before {
+    content: "+";
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: inline-block;
+    width: 1.25rem;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+details[open] summary::before { content: "−"; }
+details > *:not(summary) {
+    padding-bottom: 0.75rem;
+    color: var(--ink-soft);
+}
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+form {
+    max-width: 640px;
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    margin-top: 1rem;
+}
+
+.form-group { margin-bottom: 1.25rem; }
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    font-size: 0.9375rem;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem 0.875rem;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+input:hover, select:hover, textarea:hover { border-color: var(--muted); }
+input:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+    outline: none;
+}
+textarea {
+    min-height: 160px;
+    resize: vertical;
+    line-height: 1.55;
+}
+
+.hint {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--muted);
+    margin-top: 0.35rem;
+    font-style: italic;
+}
+
+.required { color: var(--danger); }
+
+#login-status,
+#register-status,
+#msg-status,
+#upload-status,
+#admin-status,
+#form-status,
+#welcome,
+#admin-welcome {
+    font-weight: 600;
+    color: var(--accent-dark);
+    min-height: 1.5rem;
+    margin-top: 0.5rem;
+}
+.form-status { min-height: 1.5rem; margin-top: 0.85rem; font-weight: 600; font-size: 0.95rem; }
+.form-status.error {
+    color: var(--danger);
+    background: #fdecea;
+    border: 1px solid #f5c2bd;
+    border-radius: var(--radius);
+    padding: 0.6rem 0.8rem;
+}
+.form-status.success {
+    color: var(--success);
+    background: #e7f6ed;
+    border: 1px solid #b7e0c6;
+    border-radius: var(--radius);
+    padding: 0.6rem 0.8rem;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer[role="contentinfo"] {
+    background: var(--navy);
+    color: #c3cde0;
+    border-top: 4px solid var(--accent);
+    padding: 2rem 1.5rem;
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 0.9375rem;
+}
+footer[role="contentinfo"] a { color: #cfdcff; }
+footer[role="contentinfo"] a:hover { color: #fff; }
+footer[role="contentinfo"] a:focus-visible, footer[role="contentinfo"] a:focus { outline-color: var(--focus-dark); }
+
+.copyright {
+    color: #9fb0cc;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   ADMIN PANEL TWEAKS
+   ============================================================ */
+#admin-messages .service-card,
+#admin-samples .service-card,
+#messages-list .service-card {
+    border-left: 4px solid var(--accent);
+}
+
+blockquote {
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0.75rem 0;
+}
+
+/* ============================================================
+   ADMIN CHAT — Messenger-style (admin-messages.html)
+   ============================================================ */
+.admin-chat-page main.chat-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+    align-items: start;
+    min-height: calc(100vh - 200px);
+    max-width: 1160px;
+}
+.admin-chat-page main.chat-layout > h1 {
+    grid-column: 1 / -1;
+    margin-bottom: 1rem;
+}
+
+/* Sidebar — conversation list */
+.chat-sidebar {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 0.5rem;
+    max-height: 75vh;
+    overflow-y: auto;
+    position: sticky;
+    top: 100px;
+}
+.chat-sidebar #conv-list { list-style: none; padding: 0; margin: 0; }
+
+.conv-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    padding: 0.85rem 0.9rem;
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    color: var(--ink);
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+.conv-item:hover { background: var(--bg); }
+.conv-item.active {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+}
+.conv-item .conv-name {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.15rem;
+    color: var(--ink);
+    line-height: 1.3;
+}
+.conv-item .conv-service {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--accent-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.1rem;
+}
+.conv-item .conv-preview {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 0.2rem;
+}
+.conv-item .conv-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 0.4rem;
+    vertical-align: middle;
+}
+
+/* Thread panel */
+.chat-thread {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 1.25rem;
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+}
+.chat-empty {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-style: italic;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+.chat-header {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+}
+.chat-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--ink);
+}
+.chat-header .hint {
+    margin: 0.35rem 0 0;
+    font-size: 0.8125rem;
+    font-style: normal;
+    color: var(--muted);
+}
+
+.chat-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem 0.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 48vh;
+    min-height: 220px;
+}
+
+/* Bubbles */
+.msg-row { display: flex; }
+.msg-row.client { justify-content: flex-start; }
+.msg-row.admin  { justify-content: flex-end; }
+
+.msg-bubble {
+    max-width: 72%;
+    padding: 0.7rem 1rem;
+    border-radius: 16px;
+    line-height: 1.5;
+    font-size: 0.9375rem;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.msg-row.client .msg-bubble {
+    background: var(--surface-alt);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+}
+.msg-row.admin .msg-bubble {
+    background: var(--accent);
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+.msg-meta {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.35rem;
+}
+.msg-row.admin .msg-meta {
+    color: #dbe6ff;
+    text-align: right;
+}
+
+/* Reply bar */
+.chat-reply {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    background: transparent;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding: 1rem 0 0;
+    max-width: none;
+}
+.chat-reply textarea {
+    min-height: 60px;
+    resize: none;
+    border-radius: var(--radius);
+    grid-column: 1 / -1;
+    font-family: inherit;
+}
+.chat-reply button {
+    grid-column: 2;
+    justify-self: end;
+}
+.chat-reply p {
+    grid-column: 1 / -1;
+    margin: 0;
+}
+
+/* ============================================================
+   AUTH PAGES (client login, admin login) - centered card on dark backdrop
+   ============================================================ */
+body.auth-page {
+    background-color: var(--navy);
+    background-image:
+        radial-gradient(900px 520px at 85% -10%, rgba(59, 108, 255, 0.35), transparent 65%),
+        radial-gradient(700px 480px at 0% 100%, rgba(29, 78, 216, 0.28), transparent 60%),
+        linear-gradient(135deg, #070f21 0%, #0f2147 55%, #16346b 100%);
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+}
+body.auth-page::before {
+    /* faint audio-waveform texture */
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120' viewBox='0 0 240 120'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M10 60v0M30 48v24M50 36v48M70 24v72M90 40v40M110 52v16M130 30v60M150 44v32M170 20v80M190 42v36M210 54v12M230 60v0'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 240px 120px;
+}
+body.auth-page header[role="banner"] {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: none;
+    position: relative;
+}
+body.auth-page footer[role="contentinfo"] {
+    background: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    margin-top: 0;
+    position: relative;
+}
+body.auth-page main {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1rem;
+    position: relative;
+}
+
+.auth-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 2.5rem 2.25rem 2.25rem;
+    width: 100%;
+    max-width: 460px;
+    border-top: 4px solid var(--accent);
+}
+.auth-card h1 {
+    text-align: left;
+    font-size: 1.65rem;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0.4rem;
+    max-width: 100%;
+}
+.auth-card .auth-sub {
+    color: var(--ink-soft);
+    font-size: 0.975rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.55;
+}
+.auth-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+    margin-bottom: 0.9rem;
+}
+
+/* Tabs (Log In / Create Account) */
+.auth-tabs {
+    display: flex;
+    background: var(--surface-alt);
+    border-radius: var(--radius);
+    padding: 0.25rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--line);
+    gap: 0.25rem;
+}
+.auth-tab {
+    flex: 1;
+    text-align: center;
+    padding: 0.65rem 0.5rem;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    font-family: var(--sans);
+    border: none;
+    background: transparent;
+}
+.auth-tab:hover { color: var(--accent-dark); }
+.auth-tab[aria-selected="true"] {
+    background: var(--surface);
+    color: var(--accent-dark);
+    box-shadow: var(--shadow-sm);
+}
+.auth-panel[hidden] { display: none; }
+
+.auth-card form {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+}
+.auth-card .btn {
+    width: 100%;
+    margin: 0.5rem 0 0;
+    padding: 0.85rem 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+}
+.auth-card .btn[disabled] { opacity: 0.65; cursor: progress; }
+
+.pw-wrap { position: relative; }
+.pw-wrap input { padding-right: 5.5rem; }
+.pw-toggle {
+    position: absolute;
+    right: 0.4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--accent-dark);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: var(--sans);
+}
+.pw-toggle:hover { background: var(--accent-soft); }
+
+.auth-links {
+    margin-top: 1.5rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    text-align: center;
+}
+
+/* ============================================================
+   TESTIMONIAL LAYOUT (Side-by-Side)
+   ============================================================ */
+.testimonial-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin-top: 1.5rem;
+}
+
+/* Ensure the form inside the grid doesn't have a max-width */
+.testimonial-layout form {
+    max-width: 100%;
+    margin-top: 0;
+}
+
+/* Submissions box styling */
+.testimonial-submissions {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    min-height: 100%;
+}
+
+.testimonial-submissions h3 {
+    margin-top: 0;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Responsive: Stack them on smaller screens */
+@media (max-width: 800px) {
+    .testimonial-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 800px) {
+    .admin-chat-page main.chat-layout {
+        grid-template-columns: 1fr;
+        padding: 1.5rem 1rem;
+    }
+    .chat-sidebar {
+        max-height: 260px;
+        position: static;
+    }
+    .chat-body { max-height: none; }
+}
+
+@media (max-width: 720px) {
+    body { font-size: 1rem; }
+
+    h1 { font-size: 1.875rem; }
+    h2 { font-size: 1.375rem; }
+
+    .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+    .nav-list {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: 100%;
+    }
+    .nav-list a[aria-current="page"] { border-bottom: none; border-left: 3px solid #6b93ff; }
+    .nav-list a {
+        display: block;
+        width: 100%;
+        padding: 0.6rem 0.75rem;
+    }
+
+    main { padding: 2rem 1rem 3rem; }
+    form { padding: 1.25rem; }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print {
+    header[role="banner"],
+    footer[role="contentinfo"],
+    .btn,
+    .chat-reply { display: none; }
+    body { background: #fff; color: #000; font-size: 11pt; }
+    a { color: #000; text-decoration: underline; }
+}

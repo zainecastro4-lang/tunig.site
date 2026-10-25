@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login — Tunog Modern PH-Worldwide</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="auth-page">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header role="banner">
+    <div class="header-inner">
+        <a href="index.html" class="brand"><strong>Tunog Modern PH-Worldwide</strong></a>
+        <nav aria-label="Main navigation">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Client Login</a></li>
+                <li><a href="admin-login.html" aria-current="page">Admin</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content" role="main">
+    <div class="auth-card">
+        <span class="auth-badge">Restricted area</span>
+        <h1>Admin Login</h1>
+        <p class="auth-sub">Only the site owner can sign in here. Clients should use the <a href="login.html">Client Login</a> page.</p>
+
+        <form id="admin-login-form" novalidate>
+            <div class="form-group">
+                <label for="admin-email">Admin Email</label>
+                <input type="email" id="admin-email" name="email" required autocomplete="username" autocapitalize="none" spellcheck="false">
+            </div>
+            <div class="form-group">
+                <label for="admin-password">Admin Password</label>
+                <div class="pw-wrap">
+                    <input type="password" id="admin-password" name="password" required autocomplete="current-password">
+                    <button type="button" class="pw-toggle" data-target="admin-password" aria-pressed="false" aria-label="Show password">Show</button>
+                </div>
+            </div>
+            <button type="submit" class="btn">Log In as Admin</button>
+            <p id="admin-status" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <p class="auth-links"><a href="index.html">← Back to home</a></p>
+    </div>
+</main>
+
+<footer role="contentinfo">
+    <p class="copyright">© Tunog Modern PH-Worldwide. All rights reserved.</p>
+</footer>
+
+<script src="js/auth-forms.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Sample — Tunog Modern PH-Worldwide Admin</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header role="banner">
+    <div class="header-inner">
+        <a href="admin.html" class="brand"><strong>Tunog Modern PH-Worldwide — Admin</strong></a>
+        <nav aria-label="Admin navigation">
+            <ul class="nav-list">
+                <li><a href="admin.html">Dashboard</a></li>
+                <li><a href="admin-messages.html">Messages</a></li>
+                <li><a href="admin-upload.html" aria-current="page">Upload Sample</a></li>
+                <li><a href="admin-samples.html">Manage Samples</a></li>
+                <li><a href="admin-before-after.html">Before &amp; After</a></li>
+                <li><a href="admin-testimonials.html">Testimonials</a></li>
+                <li><a href="#" id="admin-logout">Log Out</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content" role="main">
+    <h1>Upload Portfolio Sample</h1>
+    <p id="admin-welcome" role="status" aria-live="polite"></p>
+
+    <form id="upload-form" enctype="multipart/form-data" novalidate>
+        <div class="form-group">
+            <label for="up-title">Sample Title</label>
+            <input type="text" id="up-title" required>
+        </div>
+        <div class="form-group">
+            <label for="up-category">Category</label>
+            <select id="up-category" required>
+                <option>Podcast Editing</option>
+                <option>Voice &amp; Narration Editing</option>
+                <option>Mixing &amp; Mastering</option>
+                <option>Music &amp; Sound Design</option>
+                <option>Jingles &amp; Audio Branding</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="up-type">Media Type</label>
+            <select id="up-type" required>
+                <option value="audio">Audio</option>
+                <option value="video">Video</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="up-desc">Description</label>
+            <textarea id="up-desc"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="up-file">Audio or Video File</label>
+            <input type="file" id="up-file" name="media" accept="audio/*,video/*" required>
+        </div>
+        <p><button type="submit" class="btn">Upload Sample</button></p>
+        <p id="upload-status" role="status" aria-live="polite"></p>
+    </form>
+</main>
+
+<footer role="contentinfo"><p class="copyright">© Tunog Modern PH-Worldwide.</p></footer>
+<script src="js/admin.js"></script>
+<script src="js/admin-upload.js"></script>
+</body>
+</html>

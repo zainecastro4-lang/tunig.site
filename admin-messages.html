@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages — Tunog Modern PH-Worldwide Admin</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="admin-chat-page">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header role="banner">
+    <div class="header-inner">
+        <a href="admin.html" class="brand"><strong>Tunog Modern PH-Worldwide — Admin</strong></a>
+        <nav aria-label="Admin navigation">
+            <ul class="nav-list">
+                <li><a href="admin.html">Dashboard</a></li>
+                <li><a href="admin-messages.html" aria-current="page">Messages</a></li>
+                <li><a href="admin-upload.html">Upload Sample</a></li>
+                <li><a href="admin-samples.html">Manage Samples</a></li>
+                <li><a href="admin-before-after.html">Before &amp; After</a></li>
+                <li><a href="admin-testimonials.html">Testimonials</a></li>
+                <li><a href="#" id="admin-logout">Log Out</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content" role="main" class="chat-layout">
+    <h1>Client Messages</h1>
+
+    <aside class="chat-sidebar" aria-label="Conversations">
+        <h2 class="visually-hidden">Conversations</h2>
+        <div id="conv-list" role="listbox" aria-label="Client conversations">
+            <p>Loading…</p>
+        </div>
+    </aside>
+
+    <section class="chat-thread" aria-label="Selected conversation">
+        <div id="chat-empty" class="chat-empty">
+            <p>Select a conversation from the left to view messages.</p>
+        </div>
+
+        <div id="chat-active" hidden>
+            <header class="chat-header">
+                <h2 id="chat-name">—</h2>
+                <p id="chat-meta" class="hint"></p>
+            </header>
+
+            <div id="chat-body" class="chat-body" role="log" aria-live="polite" aria-label="Message history"></div>
+
+            <form id="reply-form" class="chat-reply" novalidate>
+                <label for="reply-input" class="visually-hidden">Reply</label>
+                <textarea id="reply-input" required placeholder="Type your reply… (Ctrl+Enter to send)"></textarea>
+                <button type="submit" class="btn">Send</button>
+                <p id="reply-status" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer role="contentinfo">
+    <p class="copyright">© Tunog Modern PH-Worldwide. All rights reserved.</p>
+</footer>
+
+<script src="js/admin.js"></script>
+<script src="js/admin-messages.js"></script>
+</body>
+</html>

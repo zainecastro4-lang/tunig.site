@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Before &amp; After — Tunog Modern PH-Worldwide</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header role="banner">
+    <div class="header-inner">
+        <a href="index.html" class="brand"><strong>Tunog Modern PH-Worldwide</strong></a>
+        <nav aria-label="Main navigation">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="before-after.html" aria-current="page">Before &amp; After</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" id="nav-login">Client Login</a></li>
+                <li><a href="dashboard.html" id="nav-dashboard" hidden>My Messages</a></li>
+                <li><a href="#" id="nav-logout" hidden>Log Out</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content" role="main">
+    <h1>Before &amp; After</h1>
+    <h2>Hear the Difference</h2>
+    <p>Selected audio and video examples before and after editing and processing.</p>
+
+    <section aria-labelledby="ba-h">
+        <h2 id="ba-h">Before &amp; After Samples</h2>
+        <div id="ba-list" role="region" aria-live="polite"><p>Loading samples…</p></div>
+    </section>
+
+    <section aria-labelledby="cta-h">
+        <h2 id="cta-h">Different Recordings Require Different Approaches</h2>
+        <p>Audio processing is not based on one fixed chain. The techniques used depend on the recording and desired result.</p>
+        <p>
+            <a href="services.html" class="btn">Explore Our Services</a>
+            <a href="contact.html" class="btn btn-secondary">Send a Project Inquiry</a>
+        </p>
+    </section>
+</main>
+
+<footer role="contentinfo">
+    <p class="copyright">© Tunog Modern PH-Worldwide. All rights reserved.</p>
+</footer>
+
+<script src="js/auth.js"></script>
+<script>
+(async function () {
+    const res = await fetch('/api/before-after');
+    const rows = await res.json();
+    const box = document.getElementById('ba-list');
+    if (!rows.length) {
+        box.innerHTML = '<p>No Before &amp; After samples uploaded yet. Please check back soon.</p>';
+        return;
+    }
+    function esc(s) {
+        return String(s).replace(/[&<>"']/g, c =>
+            ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+    }
+    function player(type, path, label) {
+        const tag = type === 'video'
+            ? `<video controls preload="metadata" aria-label="${esc(label)}"><source src="${path}"></video>`
+            : `<audio controls preload="metadata" aria-label="${esc(label)}"><source src="${path}"></audio>`;
+        return tag;
+    }
+    box.innerHTML = rows.map(b => `
+        <article class="service-card" style="margin-bottom:1.5rem">
+            <h3>${esc(b.title)}</h3>
+            <p>${esc(b.description || '')}</p>
+
+            <h4>Before</h4>
+            ${player(b.before_type, b.before_path, b.title + ' — Before')}
+
+            <h4>After</h4>
+            ${player(b.after_type, b.after_path, b.title + ' — After')}
+        </article>
+    `).join('');
+})();
+</script>
+</body>
+</html>

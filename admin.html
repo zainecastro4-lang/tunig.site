@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — Tunog Modern PH-Worldwide</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header role="banner">
+    <div class="header-inner">
+        <a href="admin.html" class="brand"><strong>Tunog Modern PH-Worldwide — Admin</strong></a>
+        <nav aria-label="Admin navigation">
+            <ul class="nav-list">
+                <li><a href="admin.html" aria-current="page">Dashboard</a></li>
+                <li><a href="admin-messages.html">Messages</a></li>
+                <li><a href="admin-upload.html">Upload Sample</a></li>
+                <li><a href="admin-samples.html">Manage Samples</a></li>
+                <li><a href="admin-before-after.html">Before &amp; After</a></li>
+                <li><a href="admin-testimonials.html">Testimonials</a></li>
+                <li><a href="#" id="admin-logout">Log Out</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content" role="main">
+    <h1>Admin Dashboard</h1>
+    <p id="admin-welcome" role="status" aria-live="polite"></p>
+
+    <section aria-labelledby="stats-h">
+        <h2 id="stats-h">Overview</h2>
+        <div class="service-grid">
+            <article class="service-card">
+                <h3>Messages</h3>
+                <p><strong id="stat-messages">—</strong> total</p>
+                <a href="admin-messages.html" class="btn">Open Messages</a>
+            </article>
+            <article class="service-card">
+                <h3>Portfolio Samples</h3>
+                <p><strong id="stat-samples">—</strong> uploaded</p>
+                <a href="admin-samples.html" class="btn">Manage Samples</a>
+            </article>
+            <article class="service-card">
+                <h3>Before &amp; After Pairs</h3>
+                <p><strong id="stat-ba">—</strong> uploaded</p>
+                <a href="admin-before-after.html" class="btn">Manage Before &amp; After</a>
+            </article>
+            <article class="service-card">
+                <h3>Testimonials</h3>
+                <p><strong id="stat-testi">—</strong> total</p>
+                <a href="admin-testimonials.html" class="btn">Manage Testimonials</a>
+            </article>
+        </div>
+    </section>
+</main>
+
+<footer role="contentinfo">
+    <p class="copyright">© Tunog Modern PH-Worldwide. All rights reserved.</p>
+</footer>
+
+<script src="js/admin.js"></script>
+<script>
+(async function () {
+    try {
+        const [m, s, b, t] = await Promise.all([
+            fetch('/api/admin/messages').then(r => r.json()),
+            fetch('/api/samples').then(r => r.json()),
+            fetch('/api/before-after').then(r => r.json()),
+            fetch('/api/admin/testimonials').then(r => r.json())
+        ]);
+        document.getElementById('stat-messages').textContent = m.length;
+        document.getElementById('stat-samples').textContent  = s.length;
+        document.getElementById('stat-ba').textContent       = b.length;
+        document.getElementById('stat-testi').textContent    = t.length;
+    } catch (_) {}
+})();
+</script>
+</body>
+</html>

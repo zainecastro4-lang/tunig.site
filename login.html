@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Login — Tunog Modern PH-Worldwide</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="auth-page">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header role="banner">
+    <div class="header-inner">
+        <a href="index.html" class="brand"><strong>Tunog Modern PH-Worldwide</strong></a>
+        <nav aria-label="Main navigation">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" aria-current="page">Client Login</a></li>
+                <li><a href="admin-login.html">Admin</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content" role="main">
+    <div class="auth-card">
+        <h1>Client Portal</h1>
+        <p class="auth-sub">Log in to send messages to Tunog Modern PH-Worldwide and see replies in your dashboard.</p>
+
+        <div class="auth-tabs" role="tablist" aria-label="Choose login or registration">
+            <button type="button" class="auth-tab" role="tab" id="tab-login" aria-controls="panel-login" aria-selected="true">Log In</button>
+            <button type="button" class="auth-tab" role="tab" id="tab-register" aria-controls="panel-register" aria-selected="false" tabindex="-1">Create Account</button>
+        </div>
+
+        <div class="auth-panel" id="panel-login" role="tabpanel" aria-labelledby="tab-login">
+            <form id="login-form" novalidate>
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" name="email" required autocomplete="email" autocapitalize="none" spellcheck="false">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <div class="pw-wrap">
+                        <input type="password" id="login-password" name="password" required autocomplete="current-password">
+                        <button type="button" class="pw-toggle" data-target="login-password" aria-pressed="false" aria-label="Show password">Show</button>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Log In</button>
+                <p id="login-status" class="form-status" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+
+        <div class="auth-panel" id="panel-register" role="tabpanel" aria-labelledby="tab-register" hidden>
+            <form id="register-form" novalidate>
+                <div class="form-group">
+                    <label for="reg-name">Full Name</label>
+                    <input type="text" id="reg-name" name="name" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email Address</label>
+                    <input type="email" id="reg-email" name="email" required autocomplete="email" autocapitalize="none" spellcheck="false">
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Password</label>
+                    <div class="pw-wrap">
+                        <input type="password" id="reg-password" name="password" required minlength="8" autocomplete="new-password" aria-describedby="reg-password-hint">
+                        <button type="button" class="pw-toggle" data-target="reg-password" aria-pressed="false" aria-label="Show password">Show</button>
+                    </div>
+                    <span class="hint" id="reg-password-hint">At least 8 characters.</span>
+                </div>
+                <button type="submit" class="btn">Create Account</button>
+                <p id="register-status" class="form-status" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+
+        <p class="auth-links"><a href="index.html">← Back to home</a></p>
+    </div>
+</main>
+
+<footer role="contentinfo">
+    <p class="copyright">© Tunog Modern PH-Worldwide. All rights reserved.</p>
+</footer>
+
+<script src="js/auth-forms.js"></script>
+</body>
+</html>
